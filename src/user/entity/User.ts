@@ -1,4 +1,4 @@
-import { BossRaid } from 'src/boss-raid/entity/boss-raid';
+import { BossRaid } from '../../boss-raid/entity/boss-raid';
 import { Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity('user')
