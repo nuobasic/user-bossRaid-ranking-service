@@ -37,4 +37,21 @@ export class BossRaidService {
     console.log(await memoryCache.get('level_3'));
     return 'hello';
   }
+
+  async getStatus() {
+    const bossRaid = await this.bossRaidRepository
+      .createQueryBuilder('bossraid')
+      .leftJoinAndSelect('bossraid.user', 'user')
+      .orderBy('userId', 'DESC')
+      .getOne();
+    if (!bossRaid || bossRaid.canEnter()) {
+      return {
+        canEnter: true,
+      };
+    }
+    return {
+      canEnter: false,
+      canteredUserId: bossRaid.user.userId,
+    };
+  }
 }
