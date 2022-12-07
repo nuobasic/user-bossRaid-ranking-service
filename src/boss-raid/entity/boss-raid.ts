@@ -11,7 +11,7 @@ import { BossRaidStatus } from './boo-raid.status';
 @Entity('bossraid')
 export class BossRaid {
   @PrimaryGeneratedColumn()
-  bossRaidId?: number;
+  bossRaidId: number;
 
   @Column()
   score: number;
@@ -31,4 +31,11 @@ export class BossRaid {
   @ManyToOne(() => User, (user) => user.bossRaid)
   @JoinColumn()
   user: User;
+
+  public canEnter(): boolean {
+    return (
+      this.bossRaidStatus === BossRaidStatus.SUCCESS ||
+      this.bossRaidStatus === BossRaidStatus.FAIL
+    );
+  }
 }

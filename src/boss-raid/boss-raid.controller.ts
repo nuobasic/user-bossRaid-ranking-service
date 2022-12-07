@@ -15,4 +15,9 @@ export class BossRaidController {
   async staticDataGet() {
     return await this.bossRaidService.staticData();
   }
+
+  @Get('/status')
+  async getStatus() {
+    return this.bossRaidService.getStatus();
+  }
 }
